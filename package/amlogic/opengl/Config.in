@@ -1,0 +1,32 @@
+config BR2_PACKAGE_OPENGL
+	bool "opengl"
+	help
+	  OpenGL framebuffer userspace drivers for Amlogic platform
+
+choice
+	prompt "OpenGL version"
+	depends on BR2_PACKAGE_OPENGL && (BR2_BOARD_TYPE_AMLOGIC_M1 || BR2_BOARD_TYPE_AMLOGIC_M3 || BR2_BOARD_TYPE_AMLOGIC_M6)
+	default BR2_PACKAGE_OPENGL_API20 if BR2_BOARD_TYPE_AMLOGIC_M6
+	default BR2_PACKAGE_OPENGL_API19 if (BR2_BOARD_TYPE_AMLOGIC_M1 || BR2_BOARD_TYPE_AMLOGIC_M3)
+
+config BR2_PACKAGE_OPENGL_API9
+    bool "Mali 400 OpenGL API 9 (r2p3-01rel0)"
+    depends on !BR2_ARM_EABIHF
+
+config BR2_PACKAGE_OPENGL_API17
+    bool "Mali 400 OpenGL API 17 (r3p1-01rel0)"
+    depends on BR2_ARM_EABIHF
+
+config BR2_PACKAGE_OPENGL_API19
+    bool "Mali 400 OpenGL API 19 (r3p2-01rel0)"
+    depends on !BR2_ARM_EABIHF
+
+config BR2_PACKAGE_OPENGL_API20
+    bool "Mali 400 OpenGL API 20 (r3p2-01rel1)"
+    depends on BR2_ARM_EABIHF
+
+config BR2_PACKAGE_OPENGL_API23
+    bool "Mali 400 OpenGL API 23 (r3p2-01rel3)"
+    depends on !BR2_ARM_EABIHF
+
+endchoice

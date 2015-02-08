@@ -38,6 +38,11 @@ menu "Audio and video applications"
 	source "package/yavta/Config.in"
 	source "package/ympd/Config.in"
 endmenu
+	
+# AMLogic libs and programs
+if BR2_ARM_AMLOGIC
+	source "package/amlogic/Config.in"
+endif
 
 menu "Compressors and decompressors"
 	source "package/bzip2/Config.in"
