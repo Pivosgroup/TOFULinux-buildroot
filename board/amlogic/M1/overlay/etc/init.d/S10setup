@@ -1,0 +1,71 @@
+#!/bin/sh
+exec 1>/tmp/init.log
+exec 2>>/tmp/init.log
+
+if [ "X$1" = "Xstart" ]; then
+  echo "S10setup: start"
+
+  # Remount / RW
+  echo "S10setup: remount / rw"
+  mount -o remount,rw /
+
+##Compiler will insert mount commands##
+
+  # Check if NetworkManager and dropbear system folders exists on userdata
+  if [ ! -d /root/.sysconfig/NetworkManager ] ; then
+    echo "S10setup: Creating .sysconfig/NetworkManager folder... "
+    mkdir -p /root/.sysconfig/NetworkManager
+    cp -a /etc/NetworkManager/* /root/.sysconfig/NetworkManager/
+    chmod 544 /root/.sysconfig/NetworkManager/dispatcher.d/*
+    MAC=$(cat /sys/class/net/eth0/address)
+    echo -e "[keyfile]\nunmanaged-devices=mac:$MAC" >> /root/.sysconfig/NetworkManager/NetworkManager.conf
+    sync
+  fi
+  echo "S10setup: Mounting .sysconfig/NetworkManager folder... "
+  mount -o bind /root/.sysconfig/NetworkManager /etc/NetworkManager
+  
+  #
+  echo "S10setup: checking keys"
+  # Make sure dropbear directory exists
+  if [ ! -d /etc/dropbear ] ; then
+    mkdir -p /etc/dropbear
+  fi
+  # Check for the Dropbear RSA key
+  if [ ! -f /etc/dropbear/dropbear_rsa_host_key ] ; then
+    echo -n "generating rsa key... "
+    /usr/bin/dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key > /dev/null 2>&1
+  fi
+  # Check for the Dropbear DSS key
+  if [ ! -f /etc/dropbear/dropbear_dss_host_key ] ; then
+    echo -n "generating dsa key... "
+    /usr/bin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key > /dev/null 2>&1
+  fi
+  # Make sure dropbear directory exists on userdata
+  if [ ! -d /root/.sysconfig/dropbear ] ; then
+    echo "S10setup: Creating .sysconfig/dropbear folder... "
+    mkdir -p /root/.sysconfig/dropbear
+    cp -a /etc/dropbear/* /root/.sysconfig/dropbear/
+  fi
+  echo "S10setup: Mounting .sysconfig/dropbear folder... "
+  mount -o bind /root/.sysconfig/dropbear /etc/dropbear
+
+  # Remove old guisettings.xml on first boot (Compatibility fix for true 1080 patch)
+  if [ ! -f /root/.kodi/temp/.1080 ] ; then
+     echo "S10setup: Remove old guisettings.xml if one exists... "
+     rm -rf /root/.kodi/userdata/guisettings.xml
+     touch /root/.kodi/temp/.1080
+     sync
+  fi
+
+  # Boot with performance, then switch to ondemand (kernel bug)
+  CPU=/sys/devices/system/cpu/cpu0/cpufreq
+    echo "S10setup: set cpu scaling governor"
+    echo "ondemand" > $CPU/scaling_governor
+    # If M1 or M3, limit to 600Mhz to keep audio hw from stalling
+    echo "S10setup: set cpu scaling min/max"
+    echo "600000" > $CPU/scaling_min_freq
+    # M1/M3 devices max out at 800Mhz
+    echo "800000" > $CPU/scaling_max_freq
+
+  echo "S10setup: done"
+fi

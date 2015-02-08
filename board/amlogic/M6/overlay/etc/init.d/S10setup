@@ -1,0 +1,54 @@
+#!/bin/sh
+
+if [ "X$1" = "Xstart" ]; then
+  echo "S10setup: start"
+
+  # Remount / RW
+  echo "S10setup: remount / rw"
+  mount -o remount,rw /
+
+##Compiler will insert mount commands##
+
+  # Move existing data to new location (Compatibility fix for coming from older builds)
+  if [ -e /root/xios ]; then
+    echo "S10setup: Move userdata to correct location"
+    rm -rf /root/.kodi
+    mv /root/xios/root/.kodi /root/
+    rm -rf /root/xios
+    sync
+  fi
+
+  # Check if NetworkManager system folder exists on userdata
+  if [ ! -d /root/.sysconfig/NetworkManager ] ; then
+    echo "S10setup: Creating .sysconfig folder... "
+    mkdir -p /root/.sysconfig/NetworkManager
+    cp -a /etc/NetworkManager/* /root/.sysconfig/NetworkManager/
+    chmod 544 /root/.sysconfig/NetworkManager/dispatcher.d/*
+    MAC=$(cat /sys/class/net/eth0/address)
+    echo -e "[keyfile]\nunmanaged-devices=mac:$MAC" >> /root/.sysconfig/NetworkManager/NetworkManager.conf
+    sync
+  fi
+  mount -o bind /root/.sysconfig/NetworkManager /etc/NetworkManager
+
+  # Remove old guisettings.xml on first boot (Compatibility fix for true 1080 patch)
+  if [ ! -f /root/.kodi/temp/.1080 ] ; then
+     echo "S10setup: Remove old guisettings.xml if one exists... "
+     rm -rf /root/.kodi/userdata/guisettings.xml
+     touch /root/.kodi/temp/.1080
+     sync
+  fi
+
+  # Boot with performance, then switch to lagfree (kernel bug)
+  CPU=/sys/devices/system/cpu
+  for i in $CPU/cpu0/cpufreq $CPU/cpu1/cpufreq; do
+    echo "S10setup: set cpu scaling governor"
+    echo "lagfree" > $i/scaling_governor
+    echo "S10setup: set cpu scaling min/max"
+    # M6 devices min freq 200Mhz
+    echo "200000" > $i/scaling_min_freq
+    # M6 devices max out at 1.2-1.5Ghz depending on uboot
+    echo "1200000" > $i/scaling_max_freq
+  done
+
+  echo "S10setup: done"
+fi
