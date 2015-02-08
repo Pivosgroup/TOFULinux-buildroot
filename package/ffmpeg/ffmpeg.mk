@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 2.4.3
-FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.bz2
-FFMPEG_SITE = http://ffmpeg.org/releases
+FFMPEG_VERSION = 2.4.4-Helix
+FFMPEG__SITE_METHOD = git
+FFMPEG_SITE = git://github.com/xbmc/FFmpeg.git
 FFMPEG_INSTALL_STAGING = YES
 
 FFMPEG_LICENSE = LGPLv2.1+, libjpeg license
@@ -19,14 +19,18 @@ endif
 FFMPEG_CONF_OPTS = \
 	--prefix=/usr \
 	--enable-avfilter \
+	--disable-debug \
 	--disable-version3 \
 	--enable-logging \
+	--disable-pic \
 	--enable-optimizations \
 	--disable-extra-warnings \
 	--disable-ffprobe \
 	--enable-avdevice \
 	--enable-avcodec \
 	--enable-avformat \
+	--enable-swscale \
+	--enable-postproc \
 	--disable-x11grab \
 	--enable-network \
 	--disable-gray \
