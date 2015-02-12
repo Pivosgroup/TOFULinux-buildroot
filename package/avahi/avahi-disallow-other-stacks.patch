@@ -1,0 +1,11 @@
+--- a/avahi-daemon/avahi-daemon.conf	2010-08-26 10:51:38.995153000 +1000
++++ b/avahi-daemon/avahi-daemon.conf	2015-02-12 15:48:29.542765503 +1100
+@@ -29,7 +29,7 @@
+ #check-response-ttl=no
+ #use-iff-running=no
+ #enable-dbus=yes
+-#disallow-other-stacks=no
++disallow-other-stacks=yes
+ #allow-point-to-point=no
+ #cache-entries-max=4096
+ #clients-max=4096
