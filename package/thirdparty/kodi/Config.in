@@ -1,0 +1,303 @@
+config BR2_PACKAGE_KODI
+	bool "kodi"
+	depends on BR2_PACKAGE_HAS_UDEV
+	select BR2_PACKAGE_ALSA_UTILS
+	select BR2_PACKAGE_ALSA_UTILS_ALSAMIXER
+	select BR2_PACKAGE_FLAC
+	select BR2_PACKAGE_LIBASS
+	select BR2_PACKAGE_LIBMAD
+	select BR2_PACKAGE_LIBMPEG2
+	select BR2_PACKAGE_LIBOGG
+	select BR2_PACKAGE_LIBSAMPLERATE
+	select BR2_PACKAGE_LIBTHEORA
+	select BR2_PACKAGE_LIBVORBIS
+	select BR2_PACKAGE_WAVPACK
+	select BR2_PACKAGE_BZIP2
+	select BR2_PACKAGE_DBUS
+	select BR2_PACKAGE_LIBCDIO
+	select BR2_PACKAGE_PYTHON
+	select BR2_PACKAGE_PYTHON_BZIP2
+	select BR2_PACKAGE_PYTHON_BSDDB
+	select BR2_PACKAGE_PYTHON_CURSES
+	select BR2_PACKAGE_PYTHON_PYEXPAT
+	select BR2_PACKAGE_PYTHON_READLINE
+	select BR2_PACKAGE_PYTHON_SSL
+	select BR2_PACKAGE_PYTHON_UNICODEDATA
+	select BR2_PACKAGE_PYTHON_SQLITE
+	select BR2_PACKAGE_PYTHON_ZLIB
+	select BR2_PACKAGE_PYTHON_CODECSCJK
+	select BR2_PACKAGE_LZO
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_LIBGCRYPT
+	select BR2_PACKAGE_OPENSSL
+	select BR2_PACKAGE_MYSQL
+	select BR2_PACKAGE_SQLITE
+	select BR2_PACKAGE_FONTCONFIG
+	select BR2_PACKAGE_FREETYPE
+	select BR2_PACKAGE_JASPER
+	select BR2_PACKAGE_JPEG
+	select BR2_PACKAGE_LIBMODPLUG
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_LIBUNGIF
+	select BR2_PACKAGE_TIFF
+	select BR2_PACKAGE_LIBCURL
+	select BR2_PACKAGE_LIBMICROHTTPD
+	select BR2_PACKAGE_LIBSSH2
+	select BR2_PACKAGE_BOOST
+	select BR2_PACKAGE_BOOST_THREAD
+	select BR2_PACKAGE_LIBFRIBIDI
+	select BR2_PACKAGE_NCURSES
+	select BR2_PACKAGE_NCURSES_TARGET_PANEL
+	select BR2_PACKAGE_NCURSES_TARGET_FORM
+	select BR2_PACKAGE_NCURSES_TARGET_MENU
+	select BR2_PACKAGE_PCRE
+	select BR2_PACKAGE_READLINE
+	select BR2_PACKAGE_EXPAT
+	select BR2_PACKAGE_LIBXML2
+	select BR2_PACKAGE_LIBXSLT
+	select BR2_PACKAGE_YAJL
+	select BR2_PACKAGE_SAMBA
+	select BR2_PACKAGE_SAMBA_LIBSMBCLIENT
+	select BR2_PACKAGE_LIBNFS
+	select BR2_PACKAGE_LIBRTMP
+	select BR2_PACKAGE_LIBBLURAY
+	select BR2_PACKAGE_LIBPLIST
+	select BR2_PACKAGE_LIBSHAIRPLAY
+	select BR2_PACKAGE_AVAHI
+	select BR2_PACKAGE_AVAHI_DAEMON
+	select BR2_PACKAGE_NCURSES_TARGET_PANEL
+	select BR2_PACKAGE_NCURSES_TARGET_FORM
+	select BR2_PACKAGE_NCURSES_TARGET_MENU
+	select BR2_PACKAGE_OPENGL
+	select BR2_PACKAGE_LIBUSB
+	select BR2_PACKAGE_LIBUSB_COMPAT
+    select BR2_PACKAGE_TINYXML
+	select BR2_PACKAGE_TAGLIB
+	select BR2_PACKAGE_LIBSSH
+	select BR2_PACKAGE_BOBLIGHT
+	select BR2_PACKAGE_KODI_PVR_ADDONS
+	select BR2_PACKAGE_LIBCEC
+	select BR2_PACKAGE_LIBAMPLAYER if BR2_ARM_AMLOGIC
+	select BR2_PACKAGE_AMREMOTE_CONFIG if BR2_ARM_AMLOGIC
+	select BR2_PACKAGE_KODI_ADDON_NM
+	select BR2_PACKAGE_FFMPEG
+    select BR2_PACKAGE_FFMPEG_SWSCALE
+    select BR2_PACKAGE_FFMPEG_POSTPROC
+    select BR2_PACKAGE_FFMPEG_GPL
+	help
+	kodi
+
+		http://kodi.tv
+
+menu "Kodi Options"
+	depends on BR2_PACKAGE_KODI
+
+comment "Kodi Build Options"
+
+config BR2_PACKAGE_KODI_REV
+	string "Github Revision"
+	default "14.0-Helix"
+	help
+	  This option will set the github revision.
+
+	  Github: "git://github.com/xbmc/xbmc.git"
+	  Default: "14.0-Helix"
+	  Beware: Changing this could break patchs
+
+comment "Kodi Customization Options"
+
+config BR2_KODI_REMOTE_CONF
+	string "Remote Configuration"
+	default ""
+	help
+	  This option will set the IR remote configuration.
+
+	  NOTES:
+		- If this option is not set Kodi will use it's default remote configuration
+		- Selected configuration will be installed to "/etc/kodi/remote.conf"
+		- Remote configuration should be located in "package/kodi/remotes"
+		- Compiler will append ".conf" to end of file name
+
+config BR2_KODI_KEYMAP
+	string "Keymap"
+	default ""
+	help
+	  This option will set the keymap to be used.
+
+	  NOTES:
+		- If this option is not set Kodi will use it's default keymap
+		- Selected keymap will be installed to "/usr/share/kodi/system/keymaps"
+		- Keymap should be located in "package/kodi/keymaps"
+		- Compiler will append ".xml" to end of file name
+
+config BR2_KODI_SETTINGS
+	string "Default Kodi settings"
+	default ""
+	help
+	  This option will set pre-configured settings to be used.
+
+	  NOTES:
+		- If this option is not set Kodi will use it's default settings
+		- Settings XML will be installed to "/usr/share/kodi/system/settings/settings.xml"
+		- Settings XML should be located in "package/kodi/settings"
+		- Compiler will append ".xml" to end of file name
+
+config BR2_KODI_ADV_SETTINGS
+	string "Advanced settings"
+	default ""
+	help
+	  This option will set the advanced settings to be used.
+
+	  NOTES:
+		- If this option is not set Kodi will use it's default advanced settings
+		- Advanced settings XML will be installed to "/usr/share/kodi/system/advancedsettings.xml"
+		- Advanced settings XML should be located in "package/kodi/settings"
+		- Compiler will append ".xml" to end of file name
+
+config BR2_KODI_SPLASH
+	string "Splash Screen"
+	default ""
+	help
+	  This option changes the boot splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will use it's default splash
+		- Selected image should be 1280x720 and .PNG format
+		- Splash should be located in "package/kodi/logos"
+		- Compiler will append ".png" to end of file name
+
+config BR2_KODI_OVERLAY_FB
+	bool "Use FB splash's from overlay"
+	default n
+	help
+	  This option disables installing FB splash's.
+	  (Only use if splash's are included in overlay)
+
+	  NOTES: 
+		- If this option is set Kodi will not install fb splash's
+		- If no splash's are included in overlay then none will be installed 
+
+if !BR2_KODI_OVERLAY_FB
+config BR2_KODI_STARTING_FB
+	string "Starting FB splash"
+	default ""
+	help
+	  This option changes the starting fb splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will use it's default starting fb splash
+		- Splash should be located in "package/kodi/fb_splashs"
+		- Compiler will append ".fb.lzo" to end of file name
+
+config BR2_KODI_STOPPING_FB
+	string "Stopping FB splash"
+	default ""
+	help
+	  This option changes the stopping fb splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will use it's default stopping fb splash
+		- Splash should be located in "package/kodi/fb_splashs"
+		- Compiler will append ".fb.lzo" to end of file name
+
+config BR2_KODI_COMPLETE_FB
+	string "Complete FB splash"
+	default ""
+	help
+	  This option changes the complete fb splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will use it's default complete fb splash
+		- Splash should be located in "package/kodi/fb_splashs"
+		- Compiler will append ".fb.lzo" to end of file name
+
+config BR2_KODI_COPYING_FB
+	string "Copying FB splash"
+	default ""
+	help
+	  This option changes the copying fb splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will not use a copy fb splash
+		- Splash should be located in "package/kodi/fb_splashs"
+		- Compiler will append ".fb.lzo" to end of file name
+endif
+
+config BR2_KODI_DEFAULT_SKIN
+	string "Default Skin"
+	default ""
+	help
+	  This option will set the default skin.
+
+	  Current choices:
+	  	- none
+
+	  NOTES: 
+		- If this option is not set Kodi will use confluence
+		- The set skin must exist in the source tree
+		- Compiler will append "skin." to begining of skin name
+		- This will overwrite skin choice in custom settings.xml
+
+
+config BR2_KODI_NO_CONFLUENCE
+	bool "Don't install confluence skin"
+	depends on !BR2_KODI_DEFAULT_SKIN=""
+	default n
+	help
+	  This option will remove confluence skin from Kodi.
+
+comment "Kodi Power Options"
+
+config BR2_KODI_POWERDOWN
+	bool "Powerdown"
+	default y
+	help
+	  Enable Powerdown option.
+
+config BR2_KODI_SUSPEND
+	bool "Suspend"
+	default n
+	help
+	  Enable Suspend option.
+
+config BR2_KODI_HIBERNATE
+	bool "Hibernate"
+	default n
+	help
+	  Enable Hibernate option.
+
+config BR2_KODI_REBOOT
+	bool "Reboot"
+	default y
+	help
+	  Enable Reboot option.
+
+choice
+	prompt "Confluence GUI power button function"
+	default BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_MENU
+	depends on !BR2_KODI_NO_CONFLUENCE
+	help
+	  This will set the function of the GUI power button
+
+config BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_MENU
+	bool "Power menu"
+
+config BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_POWERDOWN
+	bool "Powerdown"
+	depends on BR2_KODI_POWERDOWN
+
+config BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_SUSPEND
+	bool "Suspend"
+	depends on BR2_KODI_SUSPEND
+
+config BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_HIBERNATE
+	bool "Hibernate"
+	depends on BR2_KODI_HIBERNATE
+
+config BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_REBOOT
+	bool "Reboot"
+	depends on BR2_KODI_REBOOT
+
+endchoice
+
+endmenu

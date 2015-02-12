@@ -1,0 +1,10 @@
+menu "Kodi and its Dependencies"
+source "package/thirdparty/librtmp/Config.in"
+source "package/thirdparty/libssh/Config.in"
+source "package/thirdparty/lirc/Config.in"
+source "package/thirdparty/boblight/Config.in"
+source "package/thirdparty/kodi/Config.in"
+source "package/thirdparty/kodi-addons/Config.in"
+source "package/thirdparty/kodi-pvr-addons/Config.in"
+source "package/thirdparty/recovery_reboot/Config.in"
+endmenu

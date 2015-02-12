@@ -44,6 +44,9 @@ if BR2_ARM_AMLOGIC
 	source "package/amlogic/Config.in"
 endif
 
+# Thirdparty
+source "package/thirdparty/Config.in"
+
 menu "Compressors and decompressors"
 	source "package/bzip2/Config.in"
 if BR2_PACKAGE_BUSYBOX_SHOW_OTHERS
