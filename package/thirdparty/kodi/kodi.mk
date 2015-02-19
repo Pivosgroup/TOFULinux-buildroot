@@ -5,7 +5,7 @@
 #
 #################################################################################
 
-KODI_VERSION = 899c919a3408b72813cee12913facf9d308e5fda
+KODI_VERSION = 05460a1e1e35f69cc6d1c6c90fda459b81384497
 KODI_SITE = $(call github,the-hydra,xbmc,$(KODI_VERSION))
 KODI_LICENSE = GPLv2
 XMBC_LICENSE_FILES = LICENSE.GPL
