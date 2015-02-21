@@ -1,0 +1,14 @@
+--- a/src/udev/udev-builtin-input_id.c     2014-03-18 03:02:37.000000000 +1100
++++ b/src/udev/udev-builtin-input_id.c     2015-02-21 19:09:50.798762189 +1100
+@@ -28,6 +28,11 @@
+ #include <linux/limits.h>
+ #include <linux/input.h>
+
++// Workaround for older toolchains
++#ifndef BTN_TRIGGER_HAPPY
++#define BTN_TRIGGER_HAPPY		0x2c0
++#endif
++
+ #include "udev.h"
+
+ /* we must use this kernel-compatible implementation */
