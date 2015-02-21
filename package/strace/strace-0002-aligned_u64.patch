@@ -1,0 +1,14 @@
+--- a/linux/fanotify.h	2014-02-05 23:56:26.000000000 +1100
++++ b/linux/fanotify.h	2015-02-21 20:56:21.622258545 +1100
+@@ -3,6 +3,11 @@
+ 
+ #include <linux/types.h>
+ 
++// Workaround for older toolchains
++#ifndef __aligned_u64 
++#define __aligned_u64 __u64 __attribute__((aligned(8)))
++#endif
++
+ /* the following events that user-space can register for */
+ #define FAN_ACCESS		0x00000001	/* File was accessed */
+ #define FAN_MODIFY		0x00000002	/* File was modified */
