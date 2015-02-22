@@ -3,6 +3,11 @@
 # Stolen from RedHat FC5.
 #
 
+if [ -f /root/.kodi/mySmb.conf ] ; then
+	echo "Overriding smb.conf with mySmb.conf"
+	cp -f /root/.kodi/mySmb.conf /etc/samba/smb.conf
+fi
+
 # Check that smb.conf exists.
 [ -f /etc/samba/smb.conf ] || exit 0
 
