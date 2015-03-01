@@ -123,10 +123,10 @@
     if [ ! -d "/tmp/userdata.internal/xios/root/.kodi/temp" ]; then\
       mkdir -p /tmp/userdata.internal/xios/root/.kodi/temp\
     fi\
-    # bind tmp on mtd to temp on sdcard to accout for sockets on fs\
+    # bind tmp on mtd to temp on sdcard to account for sockets on fs\
     mount -o bind /tmp/userdata.internal/xios/root/.kodi/temp /tmp/userdata/xios/root/.kodi/temp\
   else\
-    echo "S10setup: mounting userdata from mtd"\
+    echo "S10setup: mounting userdata"\
     mount -t yaffs2 $USERDATA /tmp/userdata\
   fi\
 \
