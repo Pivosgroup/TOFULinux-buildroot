@@ -38,11 +38,11 @@ BR2_KODI_REMOTE_CONF="xios_remote"
 BR2_KODI_KEYMAP="variant.xios.keyboard"
 BR2_KODI_SETTINGS="xios_settings"
 BR2_KODI_ADV_SETTINGS="xios_m3_advancedsettings"
-BR2_KODI_SPLASH="xios_splash"
-BR2_KODI_STARTING_FB="xios_starting"
-BR2_KODI_STOPPING_FB="xios_stopping"
-BR2_KODI_COMPLETE_FB="xios_complete"
-BR2_KODI_COPYING_FB="xios_copying"
+BR2_KODI_SPLASH="ds.splash"
+BR2_KODI_STARTING_FB="ds.starting"
+BR2_KODI_STOPPING_FB="ds.shutting.down"
+BR2_KODI_COMPLETE_FB="ds.shutdown.complete"
+BR2_KODI_COPYING_FB="ds.copy"
 BR2_KODI_POWERDOWN is not set
 BR2_KODI_SUSPEND=y
 BR2_KODI_REBOOT=y
