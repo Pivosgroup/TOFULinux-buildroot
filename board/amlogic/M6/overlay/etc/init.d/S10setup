@@ -1,4 +1,6 @@
 #!/bin/sh
+exec 1>/tmp/init.log
+exec 2>>/tmp/init.log
 
 if [ "X$1" = "Xstart" ]; then
   echo "S10setup: start"
@@ -9,18 +11,9 @@ if [ "X$1" = "Xstart" ]; then
 
 ##Compiler will insert mount commands##
 
-  # Move existing data to new location (Compatibility fix for coming from older builds)
-  if [ -e /root/xios ]; then
-    echo "S10setup: Move userdata to correct location"
-    rm -rf /root/.kodi
-    mv /root/xios/root/.kodi /root/
-    rm -rf /root/xios
-    sync
-  fi
-
-  # Check if NetworkManager system folder exists on userdata
+  # Check if NetworkManager and dropbear system folders exists on userdata
   if [ ! -d /root/.sysconfig/NetworkManager ] ; then
-    echo "S10setup: Creating .sysconfig folder... "
+    echo "S10setup: Creating .sysconfig/NetworkManager folder... "
     mkdir -p /root/.sysconfig/NetworkManager
     cp -a /etc/NetworkManager/* /root/.sysconfig/NetworkManager/
     chmod 544 /root/.sysconfig/NetworkManager/dispatcher.d/*
@@ -28,7 +21,33 @@ if [ "X$1" = "Xstart" ]; then
     echo -e "[keyfile]\nunmanaged-devices=mac:$MAC" >> /root/.sysconfig/NetworkManager/NetworkManager.conf
     sync
   fi
+  echo "S10setup: Mounting .sysconfig/NetworkManager folder... "
   mount -o bind /root/.sysconfig/NetworkManager /etc/NetworkManager
+  
+  #
+  echo "S10setup: checking keys"
+  # Make sure dropbear directory exists
+  if [ ! -d /etc/dropbear ] ; then
+    mkdir -p /etc/dropbear
+  fi
+  # Check for the Dropbear RSA key
+  if [ ! -f /etc/dropbear/dropbear_rsa_host_key ] ; then
+    echo -n "generating rsa key... "
+    /usr/bin/dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key > /dev/null 2>&1
+  fi
+  # Check for the Dropbear DSS key
+  if [ ! -f /etc/dropbear/dropbear_dss_host_key ] ; then
+    echo -n "generating dsa key... "
+    /usr/bin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key > /dev/null 2>&1
+  fi
+  # Make sure dropbear directory exists on userdata
+  if [ ! -d /root/.sysconfig/dropbear ] ; then
+    echo "S10setup: Creating .sysconfig/dropbear folder... "
+    mkdir -p /root/.sysconfig/dropbear
+    cp -a /etc/dropbear/* /root/.sysconfig/dropbear/
+  fi
+  echo "S10setup: Mounting .sysconfig/dropbear folder... "
+  mount -o bind /root/.sysconfig/dropbear /etc/dropbear
 
   # Remove old guisettings.xml on first boot (Compatibility fix for true 1080 patch)
   if [ ! -f /root/.kodi/temp/.1080 ] ; then
