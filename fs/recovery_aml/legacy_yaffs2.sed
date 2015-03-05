@@ -64,12 +64,12 @@
   # Make /tmp/userdata mount point\
   mkdir -p /tmp/userdata\
 \
-  echo "S10Setup: checking for kodi-data"\
-  # Check if kodi-data exists on sdcard\
+  echo "S10Setup: checking for tofu-data"\
+  # Check if tofu-data exists on sdcard\
   # this is an horrible way to this, but only way to do case insensitve match in this shell\
   if [ $SDCARD_MOUNTED -eq 1 ]; then\
     # do directory list to see if it exists\
-    KODI_DATA_PATH="`ls -dp /media/sdcard/* | fgrep -i "/media/sdcard/kodi-data/"`"\
+    KODI_DATA_PATH="`ls -dp /media/sdcard/* | fgrep -i "/media/sdcard/tofu-data/"`"\
     # if not equal zero then set userdata path variable\
     if [[ ! -z $KODI_DATA_PATH ]]; then\
       SDCARD_KODI_DATA=1\
@@ -89,7 +89,7 @@
     SDCARD_USERDATA=0\
   fi\
 \
-  # if kodi-data exists on sdcard\
+  # if tofu-data exists on sdcard\
   # but userdata doesn't exist, then copy data to sdcard\
   echo "S10Setup: Checking if should copy userdata"\
   if [[ $SDCARD_KODI_DATA -eq 1 && $SDCARD_USERDATA -eq 0 ]]; then\
