@@ -12,7 +12,7 @@ start() {
 	echo "done"
 
 	echo -n "Starting boblight-aml service: "
-	boblight-aml -f
+	boblight-aml &
 	RETVAL2=$?
 	echo "done"
 
@@ -23,12 +23,12 @@ start() {
 
 stop() {
 	echo -n "Shutting down boblightd service: "
-	kill -9 `pidof boblightd`
+	kill `pidof boblightd`
 	RETVAL=$?
 	echo "done"
 
 	echo -n "Shutting down boblight-aml service: "
-	kill -9 `pidof boblight-aml`
+	kill `pidof boblight-aml`
 	RETVAL2=$?
 
 	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && rm -f /var/lock/subsys/boblight
