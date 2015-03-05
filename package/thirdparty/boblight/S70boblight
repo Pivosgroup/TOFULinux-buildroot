@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# Check that boblight.conf exists.
+[ -f /etc/boblight.conf ] || exit 0
+
+RETVAL=0
+
+start() {
+	echo -n "Starting boblightd service: "
+	boblightd -f
+	RETVAL=$?
+	echo "done"
+
+	echo -n "Starting boblight-aml service: "
+	boblight-aml -f
+	RETVAL2=$?
+	echo "done"
+
+	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && touch /var/lock/subsys/boblight || \
+	   RETVAL=1
+	return $RETVAL
+}	
+
+stop() {
+	echo -n "Shutting down boblightd service: "
+	kill -9 `pidof boblightd`
+	RETVAL=$?
+	echo "done"
+
+	echo -n "Shutting down boblight-aml service: "
+	kill -9 `pidof boblight-aml`
+	RETVAL2=$?
+
+	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && rm -f /var/lock/subsys/boblight
+	echo "done"
+	return $RETVAL
+}	
+
+restart() {
+	stop
+	start
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
