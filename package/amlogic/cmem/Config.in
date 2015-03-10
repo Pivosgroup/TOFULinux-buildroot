@@ -1,8 +1,0 @@
-config BR2_PACKAGE_CMEM
-	bool "cmem"
-	help
-	  memory device operation kit for amlogic pixel device
-
-	  http://openlinux.amlogic.com
-
-
