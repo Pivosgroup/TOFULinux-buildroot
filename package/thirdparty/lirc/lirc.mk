@@ -5,6 +5,8 @@ LIRC_INSTALL_STAGING = YES
 LIRC_INSTALL_TARGET = YES
 LIRC_MAKE=$(MAKE1)
 
+LIRC_DEPENDENCIES += linux
+
 LIRC_CONF_OPTS += --with-kerneldir=$(LINUX_DIR)
 LIRC_CONF_OPTS += --with-driver=all
 LIRC_CONF_OPTS += --with-moduledir="/lib/modules/$(LINUX_VERSION_PROBED)/misc"
