@@ -4,9 +4,9 @@
 #
 #################################################################################
 
-BOBLIGHT_VERSION = r479
-BOBLIGHT_SITE_METHOD = svn
-BOBLIGHT_SITE = http://boblight.googlecode.com/svn/trunk/
+BOBLIGHT_VERSION = 424ff42b7d41d299c060ff373c18360a7e22a4b8
+BOBLIGHT_SITE_METHOD = git
+BOBLIGHT_SITE = https://github.com/Pivosgroup/boblight.git
 BOBLIGHT_INSTALL_STAGING = YES
 BOBLIGHT_INSTALL_TARGET = YES
 BOBLIGHT_AUTORECONF = YES

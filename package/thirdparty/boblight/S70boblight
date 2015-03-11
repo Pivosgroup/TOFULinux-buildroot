@@ -7,6 +7,7 @@ RETVAL=0
 
 start() {
 	echo -n "Starting boblightd service: "
+	/sbin/modprobe aml_snapshot
 	boblightd -f
 	RETVAL=$?
 	echo "done"
@@ -23,6 +24,7 @@ start() {
 
 stop() {
 	echo -n "Shutting down boblightd service: "
+	/sbin/modprobe -r aml_snapshot
 	kill `pidof boblightd`
 	RETVAL=$?
 	echo "done"
