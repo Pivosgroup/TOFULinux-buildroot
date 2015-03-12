@@ -65,10 +65,6 @@ ifneq ($(BR2_CCACHE),y)
 KODI_CONF_OPTS += --disable-ccache
 endif
 
-ifeq ($(BR2_ARM_AMLOGIC),y)
-KODI_DEPENDENCIES += libamplayer
-endif
-
 ifneq ($(BR2_KODI_REMOTE_CONF),"")
 KODI_REMOTE_CONF = package/thirdparty/kodi/remotes/$(call qstrip,$(BR2_KODI_REMOTE_CONF)).conf
 else
