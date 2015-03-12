@@ -56,7 +56,7 @@ run_kodi() {
                 echo 1 > /sys/class/graphics/fb0/blank
                 fbset -g 1280 720 1280 1440 32
                 echo 1 > /sys/class/graphics/fb0/free_scale
-                lzopcat /usr/share/splash/stopping.fb.lzo > /dev/fb0
+                lzopcat /usr/share/splash/rebooting.fb.lzo > /dev/fb0
                 echo 0 > /sys/class/graphics/fb0/blank
                 sync
                 /etc/init.d/S21hwclock stop

@@ -222,6 +222,17 @@ config BR2_KODI_COPYING_FB
 		- Compiler will append ".fb.lzo" to end of file name
 endif
 
+config BR2_KODI_REBOOTING_FB
+	string "Rebooting FB splash"
+	default ""
+	help
+	  This option changes the rebooting fb splash.
+
+	  NOTES: 
+		- If this option is not set Kodi will use it's default rebooting fb splash
+		- Splash should be located in "package/kodi/fb_splashs"
+		- Compiler will append ".fb.lzo" to end of file name
+
 config BR2_KODI_DEFAULT_SKIN
 	string "Default Skin"
 	default ""

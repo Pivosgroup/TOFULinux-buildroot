@@ -94,7 +94,7 @@ endif
 ifneq ($(BR2_KODI_SPLASH),"")
 KODI_SPLASH_FILE = package/thirdparty/kodi/logos/$(call qstrip,$(BR2_KODI_SPLASH)).png
 else
-KODI_SPLASH_FILE = package/thirdparty/kodi/logos/xios_splash.png
+KODI_SPLASH_FILE = package/thirdparty/kodi/logos/ds.splash.png
 endif
 
 ifneq ($(BR2_KODI_OVERLAY_FB),y)
@@ -107,20 +107,26 @@ endif
 ifneq ($(BR2_KODI_STOPPING_FB),"")
 KODI_STOPPING_FB = package/thirdparty/kodi/fb_splashs/$(call qstrip,$(BR2_KODI_STOPPING_FB)).fb.lzo
 else
-KODI_STOPPING_FB = package/thirdparty/kodi/fb_splashs/xios_stopping.fb.lzo
+KODI_STOPPING_FB = package/thirdparty/kodi/fb_splashs/ds.shutting.down.fb.lzo
 endif
 
 ifneq ($(BR2_KODI_COMPLETE_FB),"")
 KODI_COMPLETE_FB = package/thirdparty/kodi/fb_splashs/$(call qstrip,$(BR2_KODI_COMPLETE_FB)).fb.lzo
 else
-KODI_COMPLETE_FB = package/thirdparty/kodi/fb_splashs/xios_complete.fb.lzo
+KODI_COMPLETE_FB = package/thirdparty/kodi/fb_splashs/ds.shutdown.complete.fb.lzo
 endif
 
 ifneq ($(BR2_KODI_COPYING_FB),"")
 KODI_COPYING_FB = package/thirdparty/kodi/fb_splashs/$(call qstrip,$(BR2_KODI_COPYING_FB)).fb.lzo
 else
-KODI_COPYING_FB = package/thirdparty/kodi/fb_splashs/xios_copying.fb.lzo
+KODI_COPYING_FB = package/thirdparty/kodi/fb_splashs/ds.copy.fb.lzo
 endif
+endif
+
+ifneq ($(BR2_KODI_REBOOTING_FB),"")
+KODI_REBOOTING_FB = package/thirdparty/kodi/fb_splashs/$(call qstrip,$(BR2_KODI_REBOOTING_FB)).fb.lzo
+else
+KODI_REBOOTING_FB = package/thirdparty/kodi/fb_splashs/ds.rebooting.fb.lzo
 endif
 
 ifeq ($(BR2_KODI_SET_CONFLUENCE_POWER_BUTTON_POWERDOWN),y)
@@ -172,6 +178,7 @@ define KODI_INSTALL_FB_SPLASHS
   cp -f $(KODI_STOPPING_FB) $(TARGET_DIR)/usr/share/splash/stopping.fb.lzo
   cp -f $(KODI_COMPLETE_FB) $(TARGET_DIR)/usr/share/splash/complete.fb.lzo
   cp -f $(KODI_COPYING_FB) $(TARGET_DIR)/usr/share/splash/copying.fb.lzo
+  cp -f $(KODI_REBOOTING_FB) $(TARGET_DIR)/usr/share/splash/rebooting.fb.lzo
 endef
 
 define KODI_CLEAN_UNUSED_ADDONS
