@@ -1,14 +1,11 @@
-buildroot-hydra
-===============
+buildroot-tofu-linux
+====================
 
 Buildroot for Amlogic's M1/M3/M6 platforms
 
-This Buildroot forms the basis of the-hydra Pivos images.
+This Buildroot forms the basis of the Tofu Pivos images.
 
-Note:
-- This branch will be oriented to the Pivos products.
-
-===============
+====================
 
 List of actively maintained devices:
 
@@ -38,4 +35,4 @@ List of actively maintained devices:
 ```
 
 ===================================
-This readme was updated: 2015-02-13
+This readme was updated: 2015-03-13
