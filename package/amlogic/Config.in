@@ -3,6 +3,7 @@ source "package/amlogic/cmem/Config.in"
 source "package/amlogic/opengl/Config.in"
 source "package/amlogic/libamplayer/Config.in"
 source "package/amlogic/libamplayerm3/Config.in"
+source "package/amlogic/libamplayerm6/Config.in"
 source "package/amlogic/amremote_config/Config.in"
 source "package/amlogic/broadcom/Config.in"
 endmenu
