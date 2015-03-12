@@ -12,7 +12,7 @@ BROADCOM_INSTALL_TARGET = YES
 
 define BROADCOM_INSTALL_TARGET_CMDS
  mkdir -p $(TARGET_DIR)/etc/init.d
- mkdir $(TARGET_DIR)/etc/wifi/40183
+ mkdir -p $(TARGET_DIR)/etc/wifi/40183
  install -m 755 $(@D)/S60wifi $(TARGET_DIR)/etc/init.d
  install -m 644 $(@D)/firmware/40183/* $(TARGET_DIR)/etc/wifi/40183
 endef
