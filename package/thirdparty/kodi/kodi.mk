@@ -5,8 +5,8 @@
 #
 #################################################################################
 
-KODI_VERSION = 2e841f1f1d7fb325c5b1dc265c6afdd498064b8e
-KODI_SITE = $(call github,the-hydra,xbmc,$(KODI_VERSION))
+KODI_VERSION = 01fd337632f2f97f9c17ba48cfb436d2b4055a17
+KODI_SITE = $(call github,Pivosgroup,TOFULinux-app-private,$(KODI_VERSION))
 KODI_LICENSE = GPLv2
 XMBC_LICENSE_FILES = LICENSE.GPL
 KODI_INSTALL_STAGING = YES
