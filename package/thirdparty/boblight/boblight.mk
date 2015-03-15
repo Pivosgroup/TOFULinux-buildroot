@@ -22,13 +22,11 @@ endif
 
 define BOBLIGHT_INSTALL_INITSCRIPTS_CONFIG
 	# install start/stop script
-	@if [ ! -f $(TARGET_DIR)/etc/init.d/S70boblight ]; then \
-		$(INSTALL) -m 0755 -D package/thirdparty/boblight/S70boblight $(TARGET_DIR)/etc/init.d/S70boblight; \
-	fi
+	$(INSTALL) -m 0755 -D package/thirdparty/boblight/S70boblight $(TARGET_DIR)/etc/init.d/S70boblight; \
 	# install config
-	@if [ ! -f $(TARGET_DIR)/etc/boblight.conf ]; then \
-		$(INSTALL) -m 0644 -D package/thirdparty/boblight/lightpack-single.conf $(TARGET_DIR)/etc/boblight.conf; \
-	fi
+	$(INSTALL) -m 0644 -D package/thirdparty/boblight/lightpack-single.conf $(TARGET_DIR)/etc/boblight.conf; \
+	# install udev rule
+	$(INSTALL) -m 0644 -D package/thirdparty/boblight/97-lightpack.rules $(TARGET_DIR)/etc/udev/rules.d/97-lightpack.rules;
 endef
 
 BOBLIGHT_POST_INSTALL_TARGET_HOOKS += BOBLIGHT_INSTALL_INITSCRIPTS_CONFIG

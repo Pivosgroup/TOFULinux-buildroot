@@ -1,41 +1,33 @@
 #!/bin/sh
 
+test "$2" == "udev" || exit 1
+
 # Check that boblight.conf exists.
 [ -f /etc/boblight.conf ] || exit 0
 
-RETVAL=0
-
 start() {
-	echo -n "Starting boblightd service: "
+	
 	/sbin/modprobe aml_snapshot
-	boblightd -f
-	RETVAL=$?
+	
+	echo -n "Starting boblightd service: "
+	start-stop-daemon --start --quiet --make-pidfile --pidfile /var/run/boblightd.pid --background --exec /usr/bin/boblightd
 	echo "done"
 
 	echo -n "Starting boblight-aml service: "
-	boblight-aml &
-	RETVAL2=$?
+	start-stop-daemon --start --quiet --make-pidfile --pidfile /var/run/boblight-aml.pid --background --exec /usr/bin/boblight-aml
 	echo "done"
-
-	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && touch /var/lock/subsys/boblight || \
-	   RETVAL=1
-	return $RETVAL
 }	
 
 stop() {
-	echo -n "Shutting down boblightd service: "
-	/sbin/modprobe -r aml_snapshot
-	kill `pidof boblightd`
-	RETVAL=$?
-	echo "done"
-
 	echo -n "Shutting down boblight-aml service: "
-	kill `pidof boblight-aml`
-	RETVAL2=$?
-
-	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && rm -f /var/lock/subsys/boblight
+	start-stop-daemon --stop --quiet --pidfile /var/run/boblight-aml.pid
 	echo "done"
-	return $RETVAL
+
+	echo -n "Shutting down boblightd service: "
+	start-stop-daemon --stop --quiet --pidfile /var/run/boblightd.pid
+	echo "done"
+
+	/sbin/modprobe -r aml_snapshot
 }	
 
 restart() {
