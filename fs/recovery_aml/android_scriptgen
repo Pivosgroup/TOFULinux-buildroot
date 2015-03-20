@@ -232,7 +232,7 @@ def main():
             else:
               f.write(');\n')
         f.write('show_progress(0.500000, 3);\n')
-        f.write('ui_print("Installing Linux");\n')
+        f.write('ui_print("Installing TOFULinux");\n')
         if options.wipeuserdataconditional:
           f.write('mount("%s", "%s", "%s", "/system");\n' % (options.file_system, options.memory, options.system_partition))
           f.write('ifelse\n')
@@ -273,7 +273,7 @@ def main():
           f.write('       delete("/tmp/recovery.img"));\n')	  
         f.write('show_progress(0.018000, 0);\n')
         f.write('unmount("/system");\n')
-        f.write('ui_print("Linux Installed Successfully");\n')
+        f.write('ui_print("TOFULinux Installed Successfully");\n')
         if options.nftl_partition != "none":
           f.write('ifelse\n')
           f.write('(\n')
