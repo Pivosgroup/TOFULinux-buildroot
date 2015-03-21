@@ -50,7 +50,7 @@ run_kodi() {
                     mount -o remount,ro ${dir%*/} 2>/dev/null
                 done
                 lzopcat /usr/share/splash/complete.fb.lzo > /dev/fb0
-                echo 'mem' >/sys/power/state
+                poweroff
                 ;;
             66) echo "Kodi exit with reboot" >&2
                 echo 1 > /sys/class/graphics/fb0/blank
