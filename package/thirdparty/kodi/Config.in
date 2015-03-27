@@ -255,6 +255,12 @@ config BR2_KODI_NO_CONFLUENCE
 	help
 	  This option will remove confluence skin from Kodi.
 
+config BR2_KODI_NO_TOFU_BLUR
+	bool "Don't install tofu blur skin"
+	default n
+	help
+	  This option will remove tofu blur skin from Kodi.
+
 comment "Kodi Power Options"
 
 config BR2_KODI_POWERDOWN

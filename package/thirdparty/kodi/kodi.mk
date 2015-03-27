@@ -5,7 +5,7 @@
 #
 #################################################################################
 
-KODI_VERSION = 01fd337632f2f97f9c17ba48cfb436d2b4055a17
+KODI_VERSION = 7b3f4063a95d37c93ae60886d31ad0673a6c70bb
 KODI_SITE = $(call github,Pivosgroup,TOFULinux-app-private,$(KODI_VERSION))
 KODI_LICENSE = GPLv2
 XMBC_LICENSE_FILES = LICENSE.GPL
@@ -200,6 +200,10 @@ define KODI_REMOVE_CONFLUENCE_SKIN
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/skin.confluence
 endef
 
+define KODI_REMOVE_TOFU_BLUR_SKIN
+  rm -rf $(TARGET_DIR)/usr/share/kodi/addons/skin.tofu-blur
+endef
+
 define KODI_STRIP_BINARIES
   find $(TARGET_DIR)/usr/lib/kodi/ -name "*.so" -exec $(STRIPCMD) $(STRIP_STRIP_UNNEEDED) {} \;
   $(STRIPCMD) $(STRIP_STRIP_UNNEEDED) $(TARGET_DIR)/usr/lib/kodi/kodi.bin
@@ -233,6 +237,10 @@ ifeq ($(BR2_KODI_NO_CONFLUENCE),y)
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_REMOVE_CONFLUENCE_SKIN
 else
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_SET_CONFLUENCE_POWER_BUTTON
+endif
+
+ifeq ($(BR2_KODI_NO_TOFU_BLUR),y)
+KODI_POST_INSTALL_TARGET_HOOKS += KODI_REMOVE_TOFU_BLUR_SKIN
 endif
 
 $(eval $(autotools-package))

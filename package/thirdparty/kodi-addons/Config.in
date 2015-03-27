@@ -4,7 +4,6 @@ menu "Kodi addons"
 comment "Kodi services"
 
 source "package/thirdparty/kodi-addons/opensubtitles/Config.in"
-
 source "package/thirdparty/kodi-addons/weather_yahoo/Config.in"
 
 comment "Kodi scripts"
