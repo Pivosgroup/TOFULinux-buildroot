@@ -21,7 +21,7 @@
   if [ ! -d /media/sdcard ] ; then\
     mkdir -p /media/sdcard\
   fi\
-  # Check if sdcard or usb mounted, if not try to mount it\
+  # Check if sdcard mounted, if not try to mount it\
   if ! grep -qs '/media/sdcard/' /proc/mounts; then\
     if [ -e "/dev/cardblksd1" ]; then\
       echo "S10setup: SDCard /dev/cardblksd1 mounted as /media/sdcard"\
@@ -33,14 +33,6 @@
       echo "/dev/cardblksd	/media/sdcard	vfat	rw,sync	0	0" >> /etc/fstab\
     else\
       echo "S10setup:  No SDCard found"\
-      sleep 2\
-      if [ -e "/dev/sda1" ]; then\
-	    echo "S10setup: USB /dev/sda1 mounted as /media/sdcard"\
-	    /bin/mount -o rw,sync,noatime /dev/sda1 /media/sdcard\
-	    echo "/dev/sda1	/media/sdcard	vfat	rw,sync	0	0" >> /etc/fstab\
-      else\
-	    echo "S10setup:  No USB found"\
-	  fi\
     fi\
   fi\
 \
