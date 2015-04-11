@@ -12,11 +12,28 @@
     <minaudiocachelevel>50</minaudiocachelevel>
   </pvr>
 
+  <audio>
+    <excludefromlisting>
+      <regexp>/media/sdcard/$</regexp>
+      <regexp>/media/cardblksd[1-9]/$</regexp>
+    </excludefromlisting>
+  </audio>
+
   <video>
     <subsdelayrange>60</subsdelayrange>
     <audiodelayrange>60</audiodelayrange>
-  </video>
 
+    <excludefromlisting>
+      <regexp>/media/sdcard/$</regexp>
+      <regexp>/media/cardblksd[1-9]/$</regexp>
+    </excludefromlisting>
+  </video>
+  
+  <pictureexcludes>
+    <regexp>/media/sdcard/$</regexp>
+    <regexp>/media/cardblksd[1-9]/$</regexp>
+  </pictureexcludes>
+  
   <network>
     <readbufferfactor>4.0</readbufferfactor>
     <buffermode>1</buffermode>
