@@ -1,4 +1,8 @@
+ifeq ($(BR2_BOARD_TYPE_AMLOGIC_M6),y)
+LIRC_VERSION = 0.9.2
+else
 LIRC_VERSION = 0.8.7
+endif
 LIRC_SOURCE = lirc-$(LIRC_VERSION).tar.gz
 LIRC_SITE = http://downloads.sourceforge.net/project/lirc/LIRC/$(LIRC_VERSION)
 LIRC_INSTALL_STAGING = YES
@@ -22,9 +26,11 @@ define LIRC_DEPMOD
 $(HOST_DIR)/sbin/depmod -b $(TARGET_DIR) -a $(LINUX_VERSION_PROBED)
 endef
 
+ifneq ($(BR2_BOARD_TYPE_AMLOGIC_M6),y)
 define LIRC_REMOVE_BROKEN_DRIVERS
 sed -i 's/lirc_wpc8769l//' $(@D)/drivers/Makefile
 endef
+endif
 
 define LIRC_INSTALL_ETC
   cp -rf package/thirdparty/lirc/etc $(TARGET_DIR)
