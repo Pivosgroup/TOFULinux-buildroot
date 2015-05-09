@@ -261,6 +261,10 @@ config BR2_KODI_NO_TOFU_BLUR
 	help
 	  This option will remove tofu blur skin from Kodi.
 
+config BR2_KODI_RSS_FEEDS
+	string "Default RSS feeds"
+	default ""
+
 comment "Kodi Power Options"
 
 config BR2_KODI_POWERDOWN

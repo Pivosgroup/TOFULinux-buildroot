@@ -46,6 +46,7 @@ BR2_KODI_STOPPING_FB="xs.shutting.down"
 BR2_KODI_COMPLETE_FB="xs.shutdown.complete"
 BR2_KODI_COPYING_FB="xs.copy"
 BR2_KODI_REBOOTING_FB="xs.rebooting"
+BR2_KODI_RSS_FEEDS="RssFeeds-xs"
 BR2_KODI_POWERDOWN is not set
 BR2_KODI_SUSPEND=y
 BR2_KODI_REBOOT=y

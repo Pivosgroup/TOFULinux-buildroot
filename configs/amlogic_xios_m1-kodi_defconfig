@@ -44,6 +44,7 @@ BR2_KODI_STOPPING_FB="ds.shutting.down"
 BR2_KODI_COMPLETE_FB="ds.shutdown.complete"
 BR2_KODI_COPYING_FB="ds.copy"
 BR2_KODI_REBOOTING_FB="ds.rebooting"
+BR2_KODI_RSS_FEEDS="RssFeeds-ds"
 BR2_KODI_POWERDOWN is not set
 BR2_KODI_SUSPEND=n
 BR2_KODI_REBOOT=y

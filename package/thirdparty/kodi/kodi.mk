@@ -93,6 +93,10 @@ else
 KODI_SPLASH_FILE = package/thirdparty/kodi/logos/ds.splash.png
 endif
 
+ifneq ($(BR2_KODI_RSS_FEEDS),"")
+KODI_RSS_FEEDS = package/thirdparty/kodi/settings/$(call qstrip,$(BR2_KODI_RSS_FEEDS)).xml
+endif
+
 ifneq ($(BR2_KODI_OVERLAY_FB),y)
 ifneq ($(BR2_KODI_STARTING_FB),"")
 KODI_STARTING_FB = package/thirdparty/kodi/fb_splashs/$(call qstrip,$(BR2_KODI_STARTING_FB)).fb.lzo
@@ -177,6 +181,10 @@ define KODI_INSTALL_FB_SPLASHS
   cp -f $(KODI_REBOOTING_FB) $(TARGET_DIR)/usr/share/splash/rebooting.fb.lzo
 endef
 
+define KODI_INSTALL_RSS_FEEDS
+  cp -f $(KODI_RSS_FEEDS) $(TARGET_DIR)/usr/share/kodi/userdata/RssFeeds.xml
+endef
+
 define KODI_CLEAN_UNUSED_ADDONS
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/screensaver.rsxs.euphoria
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/screensaver.rsxs.plasma
@@ -216,6 +224,7 @@ KODI_POST_INSTALL_TARGET_HOOKS += KODI_INSTALL_SPLASH
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_CLEAN_UNUSED_ADDONS
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_CLEAN_CONFLUENCE_SKIN
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_INSTALL_REMOTE_CONF
+KODI_POST_INSTALL_TARGET_HOOKS += KODI_INSTALL_RSS_FEEDS
 
 ifneq ($(BR2_KODI_OVERLAY_FB),y)
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_INSTALL_FB_SPLASHS
