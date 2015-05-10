@@ -60,6 +60,6 @@
   </input>
 
   <powermanagement>
-    <shutdownstate>1</shutdownstate>
+    <shutdownstate>3</shutdownstate>
   </powermanagement>
 </advancedsettings>
