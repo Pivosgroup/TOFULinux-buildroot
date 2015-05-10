@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Remove old RssFeeds.xml on first boot
+if [ ! -f /root/.kodi/temp/.rssfeeds ] ; then
+   echo "S94tofu-pre: Remove old RssFeeds.xml if one exists... "
+   rm -rf /root/.kodi/userdata/RssFeeds.xml
+   touch /root/.kodi/temp/.rssfeeds
+fi
+
+if [ "X$1" = "Xstart" ]; then
+  if [ -f /root/.kodi/S94tofu-pre ]; then
+    echo "S94tofu-pre:"
+    /root/.kodi/S94tofu-pre
+    echo "S94tofu-pre: done"
+  fi
+fi

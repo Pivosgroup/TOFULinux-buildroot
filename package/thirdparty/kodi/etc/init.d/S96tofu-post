@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "X$1" = "Xstart" ]; then
+  if [ -f /root/.kodi/S96tofu-post ]; then
+    echo "S96tofu-post:"
+    /root/.kodi/S96tofu-post
+    echo "S96tofu-post: done"
+  fi
+fi
