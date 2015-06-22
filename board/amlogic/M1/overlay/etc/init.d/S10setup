@@ -64,8 +64,8 @@ if [ "X$1" = "Xstart" ]; then
     # If M1 or M3, limit to 600Mhz to keep audio hw from stalling
     echo "S10setup: set cpu scaling min/max"
     echo "600000" > $CPU/scaling_min_freq
-    # M1/M3 devices max out at 800Mhz
-    echo "800000" > $CPU/scaling_max_freq
+    # max out the CPU (800000 for M1)
+    cat $CPU/cpuinfo_max_freq > $CPU/scaling_max_freq
 
   echo "S10setup: done"
 fi
