@@ -168,6 +168,10 @@ define KODI_SET_DEFAULT_SKIN
   sed -i '/<default>skin./c\          <default>skin.$(call qstrip,$(BR2_KODI_DEFAULT_SKIN))</default>' $(TARGET_DIR)/usr/share/kodi/system/settings/settings.xml
 endef
 
+define KODI_SET_DEFAULT_DEVICE_NAME
+  sed -i 's/<default>kodi<\/default>/<default>$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))<\/default>/gI' $(TARGET_DIR)/usr/share/kodi/system/settings/settings.xml
+endef
+
 define KODI_INSTALL_SPLASH
   mkdir -p $(TARGET_DIR)/usr/share/splash
   cp -f $(KODI_SPLASH_FILE) $(TARGET_DIR)/usr/share/kodi/media/Splash.png
@@ -250,6 +254,10 @@ endif
 
 ifeq ($(BR2_KODI_NO_TOFU_BLUR),y)
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_REMOVE_TOFU_BLUR_SKIN
+endif
+
+ifneq ($(BR2_KODI_DEFAULT_DEVICE_NAME),"")
+KODI_POST_INSTALL_TARGET_HOOKS += KODI_SET_DEFAULT_DEVICE_NAME
 endif
 
 $(eval $(autotools-package))

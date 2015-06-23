@@ -265,6 +265,19 @@ config BR2_KODI_RSS_FEEDS
 	string "Default RSS feeds"
 	default ""
 
+config BR2_KODI_DEFAULT_DEVICE_NAME
+	string "Default Device Name"
+	default ""
+	help
+	  This option will set the default device name.
+
+	  Current choices:
+	  	- none
+
+	  NOTES: 
+		- If this option is not set device name will be Kodi
+		- This will overwrite device name choice in custom settings.xml
+
 comment "Kodi Power Options"
 
 config BR2_KODI_POWERDOWN
