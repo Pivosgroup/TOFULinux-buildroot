@@ -170,6 +170,7 @@ endef
 
 define KODI_SET_DEFAULT_DEVICE_NAME
   sed -i 's/<default>kodi<\/default>/<default>$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))<\/default>/gI' $(TARGET_DIR)/usr/share/kodi/system/settings/settings.xml
+  sed -i 's/kodi/$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))/gI' $(TARGET_DIR)/usr/share/kodi/language/*/strings.po
 endef
 
 define KODI_INSTALL_SPLASH
