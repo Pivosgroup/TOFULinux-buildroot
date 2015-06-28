@@ -3,7 +3,7 @@
 ## Kodi Yahoo Weather Addon
 #
 ###############################################################################
-WEATHER_YAHOO_VERSION = 3.0.3
+WEATHER_YAHOO_VERSION = 3.0.6
 WEATHER_YAHOO_SOURCE = weather.yahoo-$(WEATHER_YAHOO_VERSION).zip
 WEATHER_YAHOO_SITE = http://mirrors.xbmc.org/addons/helix/weather.yahoo/
 WEATHER_YAHOO_INSTALL_STAGING = NO
