@@ -174,6 +174,10 @@ define KODI_SET_DEFAULT_DEVICE_NAME
   sed -i 's/kodi/$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))/gI' $(TARGET_DIR)/usr/share/kodi/system/peripherals.xml
 endef
 
+define KODI_SET_WEB_INTERFACE
+  sed -i '/<default>webinterface./c\          <default>webinterface.$(call qstrip,$(BR2_KODI_WEB_INTERFACE))</default>' $(TARGET_DIR)/usr/share/kodi/system/settings/settings.xml
+endef
+
 define KODI_INSTALL_SPLASH
   mkdir -p $(TARGET_DIR)/usr/share/splash
   cp -f $(KODI_SPLASH_FILE) $(TARGET_DIR)/usr/share/kodi/media/Splash.png
@@ -216,6 +220,10 @@ endef
 
 define KODI_REMOVE_TOFU_BLUR_SKIN
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/skin.tofu-blur
+endef
+
+define KODI_REMOVE_DEFAULT_WEB_INTERFACE
+  rm -rf $(TARGET_DIR)/usr/share/kodi/addons/webinterface.default
 endef
 
 define KODI_STRIP_BINARIES
@@ -265,6 +273,14 @@ endif
 
 ifneq ($(BR2_KODI_DEFAULT_DEVICE_NAME),"")
 KODI_POST_INSTALL_TARGET_HOOKS += KODI_SET_DEFAULT_DEVICE_NAME
+endif
+
+ifneq ($(BR2_KODI_WEB_INTERFACE),"")
+KODI_POST_INSTALL_TARGET_HOOKS += KODI_SET_WEB_INTERFACE
+endif
+
+ifeq ($(BR2_KODI_NO_DEFAULT_WEB_INTERFACE),y)
+KODI_POST_INSTALL_TARGET_HOOKS += KODI_REMOVE_DEFAULT_WEB_INTERFACE
 endif
 
 $(eval $(autotools-package))

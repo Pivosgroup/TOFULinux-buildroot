@@ -278,6 +278,30 @@ config BR2_KODI_DEFAULT_DEVICE_NAME
 		- If this option is not set device name will be Kodi
 		- This will overwrite device name choice in custom settings.xml
 
+config BR2_KODI_WEB_INTERFACE
+	string "Web Interface"
+	default ""
+	help
+	  This option will set the web interface.
+
+	  Current choices:
+	  	- none
+
+	  NOTES: 
+		- If this option is not set Kodi will use default webinterface
+		- The set web interface must exist in the source tree
+		- Compiler will append "webinterface." to begining of web interface name
+		- This will overwrite web interface choice in custom settings.xml
+
+
+config BR2_KODI_NO_DEFAULT_WEB_INTERFACE
+	bool "Don't install def web interface"
+	depends on !BR2_KODI_WEB_INTERFACE=""
+	default n
+	help
+	  This option will remove default web interface from Kodi.
+
+	  
 comment "Kodi Power Options"
 
 config BR2_KODI_POWERDOWN
