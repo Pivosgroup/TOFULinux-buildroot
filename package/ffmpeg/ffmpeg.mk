@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 2.4.4-Helix
+FFMPEG_VERSION = 2.6.3-Isengard
 FFMPEG__SITE_METHOD = git
 FFMPEG_SITE = git://github.com/xbmc/FFmpeg.git
 FFMPEG_INSTALL_STAGING = YES
