@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBSQUISH
+	bool "libsquish"
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  The squish library (abbreviated to libsquish) is an open source DXT
+	  compression library written in C++
+
+	  https://code.google.com/p/libsquish

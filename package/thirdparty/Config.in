@@ -1,5 +1,6 @@
 menu "Kodi and its Dependencies"
 source "package/thirdparty/librtmp/Config.in"
+source "package/thirdparty/libsquish/Config.in"
 source "package/thirdparty/libssh/Config.in"
 source "package/thirdparty/lirc/Config.in"
 source "package/thirdparty/boblight/Config.in"
