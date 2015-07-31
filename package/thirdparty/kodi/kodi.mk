@@ -5,18 +5,18 @@
 #
 #################################################################################
 
-KODI_VERSION = d129ae7a82936cf56948be62e0a9d08549e38e33
+KODI_VERSION = ea3244f85c7c97bf513fca7a4d6adb2dfcef2f28
 KODI_SITE = $(call github,Pivosgroup,TOFULinux-app-private,$(KODI_VERSION))
 KODI_LICENSE = GPLv2
 XMBC_LICENSE_FILES = LICENSE.GPL
 KODI_INSTALL_STAGING = YES
 
-KODI_DEPENDENCIES = host-gawk host-gettext host-gperf host-infozip host-lzo \
-	host-nasm host-sdl_image host-swig
+KODI_DEPENDENCIES = host-gawk host-gettext host-gperf host-infozip host-giflib host-lzo \
+	host-libjpeg host-nasm host-libpng host-swig
 
 KODI_DEPENDENCIES += avahi boost bzip2 dbus expat ffmpeg flac fontconfig freetype jasper jpeg \
 	libass libbluray libcdio libcec libcurl libfribidi libgcrypt libmad libmicrohttpd libmodplug libmpeg2 \
-	libnfs libogg libplist libpng libsamplerate libshairplay libssh libssh2 libtheora libungif libusb-compat libvorbis libxml2 libxslt lzo mysql ncurses \
+	libnfs libogg libplist libpng libsamplerate libshairplay libsquish libssh libssh2 libtheora libungif libusb-compat libvorbis libxml2 libxslt lzo mysql ncurses \
 	opengl openssl pcre python readline samba sqlite taglib tiff tinyxml udev wavpack yajl zlib
 
 KODI_CONF_ENV = \
@@ -32,11 +32,13 @@ KODI_CONF_ENV = \
 # For braindead apps like mysql that require running a binary/script
 KODI_CONF_ENV += PATH="$(STAGING_DIR)/usr/bin:$(HOST_DIR)/usr/bin:$(PATH)"
 
-KODI_CONF_OPTS += --with-ffmpeg=shared --enable-neon --enable-gles --disable-sdl --disable-x11 --disable-xrandr \
-  --disable-projectm --enable-debug --disable-joystick --with-cpu=cortex-a9
+KODI_CONF_OPTS += --with-ffmpeg=shared --enable-neon --enable-gles --disable-x11 --disable-xrandr \
+  --disable-projectm --enable-debug --disable-joystick --with-cpu=cortex-a9 --enable-texturepacker
 
 # Add HOST_DIR to PATH for codegenerator.mk to find swig
 define KODI_BOOTSTRAP
+	$(HOST_CONFIGURE_OPTS) $(MAKE) -C $(@D)/tools/depends/native/JsonSchemaBuilder
+	$(HOST_CONFIGURE_OPTS) $(MAKE) -C $(@D)/tools/depends/native/TexturePacker
 	cd $(@D) && PATH=$(BR_PATH) ./bootstrap
 endef
 KODI_PRE_CONFIGURE_HOOKS += KODI_BOOTSTRAP
@@ -170,7 +172,6 @@ endef
 
 define KODI_SET_DEFAULT_DEVICE_NAME
   sed -i 's/<default>kodi<\/default>/<default>$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))<\/default>/gI' $(TARGET_DIR)/usr/share/kodi/system/settings/settings.xml
-  sed -i 's/kodi/$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))/gI' $(TARGET_DIR)/usr/share/kodi/language/*/strings.po
   sed -i 's/kodi/$(call qstrip,$(BR2_KODI_DEFAULT_DEVICE_NAME))/gI' $(TARGET_DIR)/usr/share/kodi/system/peripherals.xml
 endef
 
