@@ -1,4 +1,5 @@
 menu "Kodi and its Dependencies"
+source "package/thirdparty/giflib/Config.in"
 source "package/thirdparty/librtmp/Config.in"
 source "package/thirdparty/libsquish/Config.in"
 source "package/thirdparty/libssh/Config.in"
