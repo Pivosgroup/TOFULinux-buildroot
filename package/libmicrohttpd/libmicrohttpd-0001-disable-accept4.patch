@@ -1,0 +1,12 @@
+--- a/src/microhttpd/daemon.c        2015-10-02 02:31:33.000000000 +1000
++++ b/src/microhttpd/daemon.c        2015-10-18 17:40:52.195238843 +1100
+@@ -67,9 +67,7 @@
+ #include <process.h>
+ #endif
+
+-#ifndef HAVE_ACCEPT4
+ #define HAVE_ACCEPT4 0
+-#endif
+
+ /**
+  * Default connection limit.
