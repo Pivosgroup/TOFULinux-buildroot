@@ -203,7 +203,7 @@ define KODI_CLEAN_UNUSED_ADDONS
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/visualization.milkdrop
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/visualization.projectm
   rm -rf $(TARGET_DIR)/usr/share/kodi/addons/visualization.itunes
-  rm -rf $(TARGET_DIR)/usr/share/kodi/addons/service.kodi.versioncheck
+  rm -rf $(TARGET_DIR)/usr/share/kodi/addons/service.xbmc.versioncheck
 endef
 
 define KODI_SET_CONFLUENCE_POWER_BUTTON
