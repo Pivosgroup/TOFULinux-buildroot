@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 2.6.3-Isengard
+FFMPEG_VERSION = 2.6.4-Isengard
 FFMPEG__SITE_METHOD = git
 FFMPEG_SITE = git://github.com/xbmc/FFmpeg.git
 FFMPEG_INSTALL_STAGING = YES
