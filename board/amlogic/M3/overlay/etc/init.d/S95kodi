@@ -32,7 +32,7 @@ run_kodi() {
     fbset -g 1280 720 1280 1440 32
     kodi_pre
     while true; do
-        /usr/lib/kodi/kodi.bin --standalone;
+        /usr/lib/kodi/kodi.bin --standalone --fs
         exit_value=$?
         case "$exit_value" in
             0)  echo "Kodi exit" >&2
