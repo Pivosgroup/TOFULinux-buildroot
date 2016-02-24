@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 2.6.4-Isengard
+FFMPEG_VERSION = 2.8.6-Jarvis-16.0
 FFMPEG__SITE_METHOD = git
 FFMPEG_SITE = git://github.com/xbmc/FFmpeg.git
 FFMPEG_INSTALL_STAGING = YES
@@ -192,6 +192,11 @@ else
 FFMPEG_CONF_OPTS += --disable-bzlib
 endif
 
+ifeq ($(BR2_PACKAGE_GNUTLS),y)
+FFMPEG_CONF_OPTS += --enable-gnutls --disable-openssl
+FFMPEG_DEPENDENCIES += gnutls
+else
+FFMPEG_CONF_OPTS += --disable-gnutls
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
 # openssl isn't license compatible with GPL
 ifeq ($(BR2_PACKAGE_FFMPEG_GPL)x$(BR2_PACKAGE_FFMPEG_NONFREE),yx)
@@ -202,6 +207,7 @@ FFMPEG_DEPENDENCIES += openssl
 endif
 else
 FFMPEG_CONF_OPTS += --disable-openssl
+endif
 endif
 
 ifeq ($(BR2_PACKAGE_LIBVORBIS),y)
