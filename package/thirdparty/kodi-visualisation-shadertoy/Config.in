@@ -1,6 +1,0 @@
-config BR2_PACKAGE_KODI_VISUALISATION_SHADERTOY
-	bool "kodi-visualisation-shadertoy"
-	help
-	  Shadertoy visualiser for Kodi
-
-	  https://github.com/notspiff/visualization.shadertoy

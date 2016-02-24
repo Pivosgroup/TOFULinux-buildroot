@@ -1,0 +1,13 @@
+--- a/src/HTSPTypes.h	2016-02-21 20:23:56.630649079 +1100
++++ b/src/HTSPTypes.h	2016-02-21 20:31:42.684995845 +1100
+@@ -28,6 +28,10 @@
+ #include <string>
+ #include "client.h"
+ 
++#ifndef INT32_MAX
++const int32_t INT32_MAX = 0x7FFFFFFF;
++#endif
++
+ typedef enum {
+   DVR_PRIO_IMPORTANT   = 0,
+   DVR_PRIO_HIGH        = 1,
