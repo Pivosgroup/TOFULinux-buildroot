@@ -5,12 +5,10 @@
   <hidetotaluptime>1</hidetotaluptime>
   <hidecputemp>1</hidecputemp>
   <showexitbutton>false</showexitbutton>
-  <loglevel hide="false">2</loglevel>
-
-  <pvr>
-    <minvideocachelevel>50</minvideocachelevel>
-    <minaudiocachelevel>50</minaudiocachelevel>
-  </pvr>
+  
+  <samba>
+    <clienttimeout>30</clienttimeout>
+  </samba>
 
   <audio>
     <excludefromlisting>
@@ -20,9 +18,6 @@
   </audio>
 
   <video>
-    <subsdelayrange>60</subsdelayrange>
-    <audiodelayrange>60</audiodelayrange>
-
     <excludefromlisting>
       <regexp>/media/sdcard/$</regexp>
       <regexp>/media/cardblksd[1-9]/$</regexp>
@@ -39,25 +34,10 @@
     <buffermode>1</buffermode>
   </network>
 
-  <audiooutput>
-    <eac3passthrough>false</eac3passthrough>
-    <truehdpassthrough>false</truehdpassthrough>
-    <dtshdpassthrough>false</dtshdpassthrough>
-    <passthroughdevice>default</passthroughdevice>
-    <audiodevice>ALSA:@</audiodevice>
-    <channels>1</channels>
-    <config>2</config>
-  </audiooutput>
-
-  <videoscreen>
-    <blankdisplays>false</blankdisplays>
-    <vsync>2</vsync>
-  </videoscreen>
-
-  <input>
-    <enablesystemkeys>false</enablesystemkeys>
-    <remoteaskeyboard>true</remoteaskeyboard>
-  </input>
+  <pvr>
+    <minvideocachelevel>5</minvideocachelevel>
+    <minaudiocachelevel>20</minaudiocachelevel>
+  </pvr>
 
   <powermanagement>
     <shutdownstate>1</shutdownstate>
