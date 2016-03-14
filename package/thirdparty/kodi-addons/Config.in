@@ -9,5 +9,6 @@ source "package/thirdparty/kodi-addons/weather_yahoo/Config.in"
 comment "Kodi scripts"
 
 source "package/thirdparty/kodi-addons/nm/Config.in"
+source "package/thirdparty/kodi-addons/mt/Config.in"
 
 endmenu

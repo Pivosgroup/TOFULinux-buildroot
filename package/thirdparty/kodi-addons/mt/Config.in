@@ -1,0 +1,5 @@
+config BR2_PACKAGE_KODI_ADDON_MT
+    bool "mt"
+    help
+      Kodi TOFULinux Maintenance Tool Addon
+
