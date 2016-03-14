@@ -218,7 +218,15 @@ def main():
         print "Creating symlinks..."
         script.MakeSymlinks(symlinks)
         f = open(options.outputfile, 'w')
-        if options.boardnames.find(" ") == -1:
+	
+	f.write('ui_print("Hardware Analysis: Started");\n')
+	f.write('ui_print("Detecting Manufacturer..");\n')
+	f.write('ui_print(getprop("ro.product.manufacturer"));\n')
+	f.write('ui_print("Detecting Device..");\n')
+	f.write('ui_print(getprop("ro.product.device"));\n')
+	f.write('ui_print("Hardware Analysis: Completed");\n')
+	
+	if options.boardnames.find(" ") == -1:
           f.write('assert(getprop("ro.build.product") == "%s" ||\n' % options.boardnames)
           f.write('       getprop("ro.product.device") == "%s");\n' % options.boardnames)
         else:
