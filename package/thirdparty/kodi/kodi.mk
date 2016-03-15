@@ -5,7 +5,7 @@
 #
 #################################################################################
 
-KODI_VERSION = 6eeafb04162c412648696025b18f330f6d637773
+KODI_VERSION = 3b742d11518b556809cdb610f3e42005f260be21
 KODI_SITE = $(call github,Pivosgroup,TOFULinux-app-private,$(KODI_VERSION))
 KODI_LICENSE = GPLv2
 XMBC_LICENSE_FILES = LICENSE.GPL
