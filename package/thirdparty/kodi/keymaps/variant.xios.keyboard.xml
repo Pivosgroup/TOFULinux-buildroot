@@ -10,7 +10,7 @@
       <f3>XBMC.ActivateWindow(VideoLibrary)</f3>
       <f13>Mute</f13>
       <f14>VolumeDown</f14>
-      <a>SubtitleDelay</a>
+      <a>AudioDelay</a>
       <home>XBMC.ActivateWindow(Home)</home>
       <menu mod="longpress">noop</menu>
       <menu>noop</menu>
@@ -18,7 +18,7 @@
   </global>
   <FullscreenVideo>
     <keyboard>
-      <a>SubtitleDelay</a>
+      <a>AudioDelay</a>
       <menu>noop</menu>
     </keyboard>
   </FullscreenVideo>
