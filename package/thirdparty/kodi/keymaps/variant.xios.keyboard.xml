@@ -12,11 +12,44 @@
       <f14>VolumeDown</f14>
       <a>SubtitleDelay</a>
       <home>XBMC.ActivateWindow(Home)</home>
+      <menu mod="longpress">noop</menu>
+      <menu>noop</menu>
     </keyboard>
   </global>
   <FullscreenVideo>
     <keyboard>
       <a>SubtitleDelay</a>
+      <menu>noop</menu>
     </keyboard>
   </FullscreenVideo>
+  <FullscreenInfo>
+    <keyboard>
+      <menu>noop</menu>
+    </keyboard>
+  </FullscreenInfo>
+  <Visualisation>
+    <keyboard>
+      <menu>noop</menu>
+    </keyboard>
+  </Visualisation>
+  <MusicOSD>
+    <keyboard>
+      <menu>noop</menu>
+     </keyboard>
+  </MusicOSD>
+  <VideoOSD>
+    <keyboard>
+      <menu>noop</menu>
+    </keyboard>
+  </VideoOSD>
+  <VideoMenu>
+    <keyboard>
+      <menu>noop</menu>
+    </keyboard>
+  </VideoMenu>
+  <ContextMenu>
+    <keyboard>
+      <menu>noop</menu>
+    </keyboard>
+  </ContextMenu>
 </keymap>
