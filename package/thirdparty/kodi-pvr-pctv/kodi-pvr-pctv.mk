@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-KODI_PVR_PCTV_VERSION = 8ea856cbcd11f051b0603249309560105d75f8d9
+KODI_PVR_PCTV_VERSION = 9d1f49e2b70c09d91fb194e25ecaf61d61b44cb3
 KODI_PVR_PCTV_SITE = $(call github,kodi-pvr,pvr.pctv,$(KODI_PVR_PCTV_VERSION))
 KODI_PVR_PCTV_LICENSE = GPLv2+
 KODI_PVR_PCTV_LICENSE_FILES = src/client.h
