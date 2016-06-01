@@ -1,0 +1,7 @@
+config BR2_PACKAGE_KODI_PVR_HDHOMERUN
+	bool "kodi-pvr-hdhomerun"
+	select BR2_PACKAGE_KODI_PLATFORM
+	help
+	  HDHOMERUN PVR for Kodi
+
+	  https://github.com/kodi-pvr/pvr.hdhomerun
